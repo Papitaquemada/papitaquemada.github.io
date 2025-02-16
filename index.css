@@ -1,0 +1,13 @@
+body {
+    background-color: hwb(182 40% 0%);
+  }
+  
+  
+  h1 {
+    color: rgb(62, 18, 238);
+    font: oblique bold 130% cursive;
+  }
+  
+  p {
+    font: small-caps 100%/200% serif;
+  }
