@@ -74,6 +74,10 @@
             font-family: cursive;
             font-size: 1.2rem;
         }
+
+        p3 {
+            text-align: justify;
+        }
         
         h2 {
             color: var(--primary-color);
@@ -172,7 +176,7 @@
         footer1 {
             color: #691717;
             text-align: justify-all;
-            padding: 1rem 1rem;
+            padding: 1rem 2rem;
             font-family: cursive;
             font-size: 1.0rem;
         }
