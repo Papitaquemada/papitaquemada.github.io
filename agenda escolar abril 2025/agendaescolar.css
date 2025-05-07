@@ -171,8 +171,8 @@
 
         footer1 {
             color: #691717;
-            text-align: center;
-            padding: 1rem 3rem;
+            text-align: justify-all;
+            padding: 1rem 1rem;
             font-family: cursive;
             font-size: 1.0rem;
         }
