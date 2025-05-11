@@ -12,6 +12,10 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        .img-container {
+        text-align: center;
+        }
         
         body {
             background-color: var(--light-color);
@@ -83,6 +87,11 @@
             margin: 1.5rem 0 1rem;
             text-align: center;
         }
+
+        p5 {
+            color: rgb(64, 37, 161);
+            text-align: center;
+        }
         
         h2 {
             color: var(--primary-color);
@@ -94,6 +103,7 @@
 
         h3 {
             color: green;
+            text-align: center;
             
             
         }
@@ -104,6 +114,17 @@
             padding: 0rem 0rem;
             margin-top: 0rem;
             text-align: center;
+        
+        }
+
+        h5 {
+            color: rgb(13, 73, 43);
+            text-align: center;
+            padding: 0rem 0rem;
+            margin-top: 0rem;
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.2rem;
         
         }
         
