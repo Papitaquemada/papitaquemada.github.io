@@ -186,10 +186,15 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
         
         .btn:hover {
             background-color: #27ae60;
+            align-items: center;
+            justify-content: center;
         }
         
         footer {
