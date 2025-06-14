@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Velocidad de Lectura</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .timer-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .pause-btn {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+        }
+
+        .stop-btn {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .reset-btn {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .text-section {
+            margin-bottom: 30px;
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 667px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            resize: vertical;
+            background: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .instructions {
+            background: rgba(255, 235, 59, 0.1);
+            border-left: 4px solid #ffeb3b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .timer-display {
+                font-size: 2rem;
+                min-width: 150px;
+            }
+            
+            .controls {
+                justify-content: center;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        footer {
+            margin-top: 20px;
+            color: #ece8e8;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="lectura seis.html">Menu de lecturas</a>
+        <h1>⏱ Medidor de Velocidad de Lectura ⏱</h1>
+        
+        <div class="instructions">
+            <h3>Instrucciones:</h3>
+            <ol>
+                
+                <li>Presiona "Iniciar" cuando estés listo para comenzar a leer.</li>
+                <li>Lee el texto a tu ritmo normal.</li>
+                <li>Presiona "Detener" cuando hayas terminado de leer.</li>
+                <li>Revisa tus estadísticas de velocidad de lectura.</li>
+                <li>Desarrollar las preguntas de reflexión.</li>
+                <li>Realizar la actividad que está al final.</li>
+            </ol>
+        </div>
+
+        <div class="timer-section">
+            <div class="timer-display" id="timer">00:00</div>
+            <div class="controls">
+                <button class="start-btn" onclick="startTimer()">▶️ Iniciar</button>
+                <button class="pause-btn" onclick="pauseTimer()">⏸️ Pausar</button>
+                <button class="stop-btn" onclick="stopTimer()">⏹️ Detener</button>
+                <button class="reset-btn" onclick="resetTimer()">🔄 Reiniciar</button>
+            </div>
+        </div>
+
+        <div class="text-section">
+            <textarea 
+                class="text-input" 
+                id="textArea" 
+                placeholder="Pega aquí el texto que quieres leer para medir tu velocidad de lectura..."
+                oninput="updateWordCount()"
+            ></textarea>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="wordCount">0</div>
+                <div class="stat-label">Palabras Totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="readingTime">0</div>
+                <div class="stat-label">Tiempo (segundos)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="wpm">0</div>
+                <div class="stat-label">Palabras por Minuto</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="readingSpeed">Lenta</div>
+                <div class="stat-label">Velocidad de Lectura</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== VARIABLES GLOBALES =====
+        let startTime = 0;        // Tiempo cuando se inició el cronómetro
+        let elapsedTime = 0;      // Tiempo transcurrido en segundos
+        let timerInterval = null; // Referencia al intervalo del cronómetro
+        let isRunning = false;    // Estado: ¿está corriendo el cronómetro?
+        let isPaused = false;     // Estado: ¿está pausado el cronómetro?
+
+        // ===== FUNCIONES DE FORMATO Y VISUALIZACIÓN =====
+        
+        /**
+         * Convierte segundos a formato MM:SS
+         * @param {number} seconds - Segundos a convertir
+         * @returns {string} Tiempo formateado como "MM:SS"
+         */
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);           // Calcular minutos
+            const secs = seconds % 60;                       // Calcular segundos restantes
+            // Agregar ceros a la izquierda si es necesario (ej: "05:03")
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        /**
+         * Actualiza la visualización del cronómetro en pantalla
+         */
+        function updateDisplay() {
+            const timer = document.getElementById('timer');
+            timer.textContent = formatTime(elapsedTime);
+        }
+
+        // ===== FUNCIONES DE CONTROL DEL CRONÓMETRO =====
+
+        /**
+         * Inicia el cronómetro
+         * Si ya estaba pausado, continúa desde donde se pausó
+         */
+        function startTimer() {
+            if (!isRunning) {
+                // Calcular el tiempo de inicio considerando el tiempo ya transcurrido
+                startTime = Date.now() - (elapsedTime * 1000);
+                isRunning = true;
+                isPaused = false;
+                
+                // Crear intervalo que actualiza cada segundo
+                timerInterval = setInterval(() => {
+                    elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+                    updateDisplay();
+                }, 1000);
+                
+                // Cambiar color del borde para indicar que está activo (verde)
+                document.getElementById('textArea').style.borderColor = '#4CAF50';
+            }
+        }
+
+        /**
+         * Pausa o reanuda el cronómetro
+         * Actúa como botón de pausa/reanudar
+         */
+        function pauseTimer() {
+            if (isRunning && !isPaused) {
+                // Pausar: detener el intervalo
+                clearInterval(timerInterval);
+                isPaused = true;
+                isRunning = false;
+                // Cambiar color del borde para indicar pausa (naranja)
+                document.getElementById('textArea').style.borderColor = '#ff9800';
+            } else if (isPaused) {
+                // Reanudar: volver a iniciar
+                startTimer();
+            }
+        }
+
+        /**
+         * Detiene completamente el cronómetro y calcula las estadísticas
+         */
+        function stopTimer() {
+            if (isRunning || isPaused) {
+                clearInterval(timerInterval);  // Detener el intervalo
+                isRunning = false;
+                isPaused = false;
+                calculateStats();              // Calcular estadísticas finales
+                // Cambiar color del borde para indicar detención (rojo)
+                document.getElementById('textArea').style.borderColor = '#f44336';
+            }
+        }
+
+        /**
+         * Reinicia completamente el cronómetro y las estadísticas
+         */
+        function resetTimer() {
+            clearInterval(timerInterval);      // Detener cualquier intervalo activo
+            elapsedTime = 0;                   // Resetear tiempo transcurrido
+            isRunning = false;
+            isPaused = false;
+            updateDisplay();                   // Actualizar visualización a 00:00
+            resetStats();                      // Resetear todas las estadísticas
+            // Restaurar color original del borde
+            document.getElementById('textArea').style.borderColor = '#ddd';
+        }
+
+        // ===== FUNCIONES DE ANÁLISIS DE TEXTO =====
+
+        /**
+         * Cuenta las palabras en el texto y actualiza el contador en tiempo real
+         * Se ejecuta cada vez que el usuario escribe en el textarea
+         */
+        function updateWordCount() {
+            const text = document.getElementById('textArea').value;
+            // Dividir por espacios en blanco y filtrar palabras vacías
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            document.getElementById('wordCount').textContent = words.length;
+        }
+
+        /**
+         * Calcula todas las estadísticas de velocidad de lectura
+         * Se ejecuta cuando se detiene el cronómetro
+         */
+        function calculateStats() {
+            const text = document.getElementById('textArea').value;
+            // Contar palabras (mismo método que updateWordCount)
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const wordCount = words.length;
+            
+            // Convertir tiempo de segundos a minutos para el cálculo de WPM
+            const timeInMinutes = elapsedTime / 60;
+            
+            // Calcular palabras por minuto (evitar división por cero)
+            const wpm = timeInMinutes > 0 ? Math.round(wordCount / timeInMinutes) : 0;
+            
+            // Actualizar estadísticas en pantalla
+            document.getElementById('readingTime').textContent = elapsedTime;
+            document.getElementById('wpm').textContent = wpm;
+            
+            // ===== CLASIFICACIÓN DE VELOCIDAD DE LECTURA =====
+            // Basado en estándares de velocidad de lectura para adultos
+            let speedCategory = 'Muy Lenta';
+            if (wpm >= 250) speedCategory = 'Muy Rápida';        // 250+ WPM
+            else if (wpm >= 200) speedCategory = 'Rápida';       // 200-249 WPM
+            else if (wpm >= 150) speedCategory = 'Normal';       // 150-199 WPM
+            else if (wpm >= 100) speedCategory = 'Lenta';        // 100-149 WPM
+            // Menos de 100 WPM = 'Muy Lenta'
+            
+            document.getElementById('readingSpeed').textContent = speedCategory;
+        }
+
+        /**
+         * Reinicia todas las estadísticas a sus valores iniciales
+         */
+        function resetStats() {
+            document.getElementById('readingTime').textContent = '0';
+            document.getElementById('wpm').textContent = '0';
+            document.getElementById('readingSpeed').textContent = 'Lenta';
+        }
+
+        // ===== INICIALIZACIÓN =====
+        
+        /**
+         * Texto de ejemplo predeterminado para pruebas
+         * Contiene información sobre técnicas de lectura rápida
+         */
+        document.getElementById('textArea').value = `                                         "El Cuento del Pequeño Narrador"
+
+En un pueblo llamado Verdaluz, vivía un niño llamado Leo, famoso por su imaginación sin límites. A donde fuera, siempre tenía una historia que contar. Desde pequeños duendes que cuidaban los bosques hasta barcos piratas que navegaban en busca de tesoros ocultos, cada palabra suya parecía cobrar vida.
+
+Un día, la maestra de Lengua y Literatura les dio un desafío: escribir su propio cuento y compartirlo con la clase. Todos se emocionaron, menos Leo. Aunque le encantaba narrar historias, nunca había escrito una.
+
+Con un cuaderno en blanco frente a él, Leo suspiró. No sabía por dónde empezar. Entonces, su abuela le dijo:
+—Las mejores historias nacen de lo que sentimos y vivimos. Solo escucha tu corazón.
+
+Inspirado, Leo comenzó a escribir sobre una niña llamada Sofía, que descubría que las palabras tenían el poder de cambiar el mundo. Su historia hablaba de cómo una simple carta podía alegrar a alguien triste, de cómo un libro podía hacer viajar a otros sin moverse del lugar y de cómo contar historias era una manera de unir corazones.
+
+Cuando terminó, Leo leyó su cuento en voz alta frente a la clase. Sus compañeros aplaudieron emocionados y la maestra sonrió.
+—Las palabras tienen un gran poder, Leo —dijo—. Nunca dejes de usarlas para inspirar.
+
+Desde ese día, Leo entendió que escribir era otra forma de contar historias, y así empezó su camino para convertirse en un gran escritor.
+ `;
+
+        // Inicializar contador de palabras al cargar la página
+        updateWordCount();
+    </script>
+
+    <footer style="text-align: center; margin-top: 20px; color: #ece8e8;">
+        <p>Preguntas de reflexión:</p>
+        <ol>
+            <br>
+            <p>¿Por qué crees que a Leo le costaba escribir su historia?</p>
+            <p>¿Qué consejo le dio su abuela y cómo lo ayudó?</p>
+            <p>¿Crees que las palabras pueden cambiar el mundo? ¿Cómo?</p>
+            <p>¿Qué historia te gustaría escribir y por qué?</p>
+            <br>
+        </ol>
+        </p>
+        <p>✅ Actividad: Escribir un cuento sobre cómo la lectura o la escritura puede transformar a las personas.</p>
+    </footer>
+</body>
+</html>

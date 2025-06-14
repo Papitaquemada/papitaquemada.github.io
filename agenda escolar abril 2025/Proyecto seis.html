@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto Escolar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #E8F4FD 0%, #F0F8E8 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #A8D5E2 0%, #B8E6B8 100%);
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2C5F7E;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #4A7C59;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #2C5F7E;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #E8F4FD 0%, #F5F0E8 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu li a:hover {
+            background: linear-gradient(135deg, #A8D5E2 0%, #C8E6C9 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Cards Grid */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #A8D5E2, #B8E6B8, #F5F0E8, #E8F4FD);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #A8D5E2;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #E8F4FD 0%, #F0F8E8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            color: #2C5F7E;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #4A7C59;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #A8D5E2 0%, #B8E6B8 100%);
+            color: #2C5F7E;
+            text-decoration: none;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-button:hover {
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .nav-menu li a {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .activity-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .activity-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .activity-card:nth-child(1) { animation-delay: 0.1s; }
+        .activity-card:nth-child(2) { animation-delay: 0.2s; }
+        .activity-card:nth-child(3) { animation-delay: 0.3s; }
+        .activity-card:nth-child(4) { animation-delay: 0.4s; }
+        .activity-card:nth-child(5) { animation-delay: 0.5s; }
+        .activity-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #2C5F7E 0%, #4A7C59 100%);
+            color: white;
+            margin-top: 4rem;
+            padding: 3rem 0 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #A8D5E2, #B8E6B8, #F5F0E8, #E8F4FD);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #A8D5E2;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            color: #E8F4FD;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #E8F4FD;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #A8D5E2;
+            transform: translateX(5px);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px 1rem;
+            border-top: 1px solid rgba(168, 213, 226, 0.3);
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #E8F4FD;
+            margin: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(168, 213, 226, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Proyecto Interdisciplinario de Sexto Grado</h1>
+            <p class="subtitle">Explorando valores a través de la lectura y la tecnología.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="materias.html">Actividades Escolares</a></li>
+                <li><a href="tareas.html">Tareas</a></li>
+                <li><a href="https://www.cuandoenelmundo.com/calendario/panama/2025">Calendario</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="https://view.genially.com/676980bae04869c6d27a8655/interactive-content-agenda-semanal-y-tareas-2025">Agenda de la maestra: Yadira Abrego</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="card-icon">📚</div>
+                    <h3 class="card-title">Lecturas.</h3>
+                    <p class="card-description">Desarrolla tus habilidades de comprensión lectora con textos interactivos y ejercicios dinámicos que te ayudarán a mejorar tu análisis crítico.</p>
+                    <a href="lectura seis.html" class="card-button">Vamos a leer</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">📓</div>
+                    <h3 class="card-title">Vocabulario para buscar significados.</h3>
+                    <p class="card-description">Un vocabulario amplio te permite expresar ideas con mayor precisión y matices</p>
+                    <a href="#" class="card-button">Buscar Significados</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">🎨</div>
+                    <h3 class="card-title">Actividades para pintar.</h3>
+                    <p class="card-description">Pintar dibujos ofrece beneficios que van mucho más allá del resultado artístico final, impactando positivamente tu bienestar mental, físico y emocional.</p>
+                    <a href="#" class="card-button">Iniciar Actividad</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">🎭</div>
+                    <h3 class="card-title">Cuento Ortográfico.</h3>
+                    <p class="card-description">La ortografía es fundamental porque actúa como el cimiento sobre el cual se construye toda comunicación escrita efectiva.</p>
+                    <a href="#" class="card-button">Explorar Actividad</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">🕒</div>
+                    <h3 class="card-title">Velocímetro o cronómetro de lectura.</h3>
+                    <p class="card-description">Explora países, culturas y paisajes de todo el mundo con mapas interactivos y actividades de investigación geográfica.</p>
+                    <a href="#" class="card-button">Explorar Mundo</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">👨‍👦‍👦</div>
+                    <h3 class="card-title">Coral poética.</h3>
+                    <p class="card-description">Leer para ser</p>
+                    <a href="#" class="card-button">Viajar en el Tiempo</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">⚽</div>
+                    <h3 class="card-title">Juegos interactivos.</h3>
+                    <p class="card-description">Cuando los estudiantes aprenden jugando, conectan conceptos abstractos con experiencias concretas y divertidas.</p>
+                    <a href="#" class="card-button">Explorar juegos</a>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-icon">🎹</div>
+                    <h3 class="card-title">Letra de la canción para todos.</h3>
+                    <p class="card-description">Viaja en el tiempo y conoce personajes históricos importantes a través de simulaciones interactivas y líneas temporales dinámicas.</p>
+                    <a href="#" class="card-button">Viajar en el Tiempo</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Información:</h4>
+                <p>Este proyecto educativo fue desarrollado para promover el aprendizaje interactivo y dinámico en el ámbito escolar.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Repositorio.</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/Papitaquemada/papitaquemada.github.io">papitaquemada.github.io</a></li>
+                <h4>Menu.</h4>
+                <ul class="footer-links">
+                    <li><a href="materias.html">Actividades escalares.</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto:</h4>
+                <div class="contact-info">
+                    <p>klever.deguevara@meduca.edu.pa</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> Pensamiento: Un niño que lee, será un adulto que piensa.</p>
+            <div class="social-links">
+              
+                <a1 href="#" aria-label="github">Desarrollado por el estudiante: Kleber de Lora 🐱‍👤</a1>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para la navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto hover adicional para las tarjetas
+        const cards = document.querySelectorAll('.activity-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animación de entrada progresiva
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
