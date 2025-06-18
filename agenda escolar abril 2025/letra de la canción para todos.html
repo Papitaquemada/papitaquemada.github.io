@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -183,6 +182,78 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
+        /* Audio Player Styles */
+        .audio-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .audio-title {
+            color: #2C5F7E;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .audio-player {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .custom-audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .audio-btn {
+            background: linear-gradient(135deg, #A8D5E2 0%, #B8E6B8 100%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .audio-btn:hover {
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -205,6 +276,15 @@
             
             .activity-card {
                 padding: 1.5rem;
+            }
+
+            .custom-audio-controls {
+                gap: 0.5rem;
+            }
+
+            .audio-btn {
+                width: 45px;
+                height: 45px;
             }
         }
 
@@ -416,8 +496,6 @@
         </nav>
 
         <main>
-
-          
         
         <div class="activities-grid">
             <div class="activity-card">
@@ -443,7 +521,40 @@
             <p2>Con cada línea</p2>
             <p2>La mente se eleva</p2>
             <p2>Gracias por mostrarnos que siempre nos lleva</p2>
-           
+            
+            <!-- Reproductor de Audio MP3 -->
+            <div class="audio-section">
+                <h3 class="audio-title">🎵 Escucha la canción 🎵</h3>
+                
+                <!-- Reproductor básico con controles -->
+                <div class="audio-player">
+                    <audio id="audioPlayer" controls preload="auto">
+                        <source src="./Proyecto int/gracias por leer.mpeg" type="audio/mpeg">
+                        <source src="cancion-grupal.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+                <!-- Controles personalizados adicionales -->
+                <div class="custom-audio-controls">
+                    <button class="audio-btn" onclick="playAudio()" title="Reproducir">
+                        ▶️
+                    </button>
+                    <button class="audio-btn" onclick="pauseAudio()" title="Pausar">
+                        ⏸️
+                    </button>
+                    <button class="audio-btn" onclick="stopAudio()" title="Detener">
+                        ⏹️
+                    </button>
+                    <div class="volume-control">
+                        <span>🔊</span>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1" onchange="changeVolume()">
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
         </main>
     </div>
 
@@ -488,6 +599,27 @@
     </footer>
 
     <script>
+        // Audio Player Functions
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        function playAudio() {
+            audioPlayer.play();
+        }
+
+        function pauseAudio() {
+            audioPlayer.pause();
+        }
+
+        function stopAudio() {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+        }
+
+        function changeVolume() {
+            const volume = document.getElementById('volumeSlider').value;
+            audioPlayer.volume = volume;
+        }
+
         // Smooth scrolling para la navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
