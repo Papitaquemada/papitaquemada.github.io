@@ -124,6 +124,7 @@
             resize: vertical;
             background: rgba(255, 255, 255, 0.9);
             transition: border-color 0.3s ease;
+            align-content: justify;
         }
 
         .text-input:focus {
@@ -144,7 +145,7 @@
             color: white;
             padding: 25px;
             border-radius: 15px;
-            text-align: center;
+            text-align: justify;
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
             transition: transform 0.3s ease;
         }
@@ -427,7 +428,7 @@
          * Texto de ejemplo predeterminado para pruebas
          * Contiene información sobre técnicas de lectura rápida
          */
-        document.getElementById('textArea').value = ` “El Tambor de Abuela Ana”
+        document.getElementById('textArea').value = `“El Tambor de Abuela Ana”
 
 En un pequeño pueblo junto al mar, vivía Abuela Ana, una mujer alegre de piel morena y sonrisa brillante. Cada tarde, se sentaba bajo un árbol con su tambor hecho a mano. Los niños del pueblo corrían a su lado para escuchar sus historias.
 
@@ -443,7 +444,7 @@ Ella respondió con dulzura:
 
 —Porque somos parte de una historia valiente. Porque nuestras raíces son fuertes como el tambor, y nuestra cultura es un regalo para el mundo.
 
-Desde entonces, cada mayo, el pueblo entero se reúne para cantar, bailar y recordar con alegría la fuerza de su gente. `;
+Desde entonces, cada mayo, el pueblo entero se reúne para cantar, bailar y recordar con alegría la fuerza de su gente.`;
 
         // Inicializar contador de palabras al cargar la página
         updateWordCount();
