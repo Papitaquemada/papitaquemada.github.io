@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&Display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive;
+    background-color: #00CAFF;
+}
+
+#seleccionar-comida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    color: rgb(255, 0, 0);
+    font-size: 50px;
+}
+
+.subtitulo {
+    color: rgb(240, 88, 0);
+    font-size: 30px;
+}
+
+.tarjeta {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-de-comidapon {
+  width: 325px;
+  height: 171px;
+  background: #11468F;
+  padding: 13px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.seleccionar {
+    width: 180px;
+    height: 40px;
+    margin: 20px;
+    font-size: 16px;
+    color: rgb(255, 0, 0);
+    border: rgb(202, 84, 6);
+    cursor: pointer;
+
+    font-family: 'EstiloCombate', cursive;
+
+    border-radius: 20px;
+    background-image: url('https://usagif.com/wp-content/uploads/gifs/fire-51.gif'); ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input {
+    display: none;
+}
+
+
+#seleccionar-ataque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-ataque {
+    width: 137px;
+    height: 45px;
+    margin: 8px;
+    font-size: 25px;
+    background-color: #FFED00;
+    color: rgb(255, 0, 0);
+    border: rgb(202, 84, 6);
+    cursor: pointer;
+
+    font-family: 'EstiloCombate', cursive;
+
+    border-radius: 20px;
+    
+}
+
+#mensajes {
+    width: 430px;
+    background: #C6EBC5;
+    margin-top: 23px;
+    padding: 17px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 19px;
+}
+
+#boton-reiniciar {
+    border: transparent;
+    color: #00ceff;
+    font-family: 'Fredoka one', cursive;
+    border-radius: 11px;
+    font-size: 45px;
+    background: #ff005c;
+}
+
