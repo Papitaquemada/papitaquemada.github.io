@@ -62,6 +62,10 @@ input {
     display: none;
 }
 
+input:checked + label {
+    background: #0077ff;
+}
+
 
 #seleccionar-ataque {
     display: flex;
