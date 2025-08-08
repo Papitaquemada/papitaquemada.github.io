@@ -106,3 +106,8 @@ input {
     background: #ff005c;
 }
 
+@media (max-width: 360px) {
+    .tarjeta {
+        flex-direction: column;
+    }
+}

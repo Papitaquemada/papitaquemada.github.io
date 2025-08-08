@@ -50,7 +50,8 @@ function seleccionarComidaJugador() {
     }else if (inputChococream.checked) {
         spanComidajugador.innerHTML = 'Chococream'
     } else {
-        alert('no no no no🤦‍♂️,primero selecciona una comida oke tamos bien🧐👍')
+        alert('no no no no🤦‍♂️,primero selecciona una comida oke tamos bien🧐👍' )
+        
     }
 
     seleccionarComidaEnemigo()
@@ -230,7 +231,7 @@ function mostrarVidasConAnimacion(vidasAntes, vidasDespues, spanElemento) {
 
 function reproducirExplosion() {
     const explosion = new Audio('./comidas/explosion.mp3')
-    explosion.volume = 0.3 // ajustá el volumen si querés
+    explosion.volume = 0.1 // ajustá el volumen si querés
     explosion.play()
 }
 
