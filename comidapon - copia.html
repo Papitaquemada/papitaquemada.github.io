@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf=8" />
+        <title>COMIDAPON</title>
+        <script src="comidapon.js"></script>
+        <link rel="stylesheet" href="./css/comidapon.css">
+    </head>
+    <body>
+        <section id="seleccionar-comida">
+        <h1  class="titulo">COMIDAPON</h1>
+       
+            <h2 class="subtitulo">Elige tu comida:</h2>
+
+            <div class="tarjeta">
+                <input type="radio" name="comida" id="papita" />
+                <label class="tarjeta-de-comidapon" for="papita">
+                    <p>Papita</p>
+                    <img src="./comidas/papita.png" alt="papita" class="tarjeta-de-comidapon" style="background: transparent;"/>
+                </label>
+                
+                <input type="radio" name="comida" id="Nuggets" />
+                <label class="tarjeta-de-comidapon" for="Nuggets">
+                    <p>Nuggets</p>
+                    <img src="./comidas/nuggets.png" alt="nuggets" class="tarjeta-de-comidapon" style="background: transparent;"/>
+                </label>
+                
+                <input type="radio" name="comida" id="Tamal" />
+                <label class="tarjeta-de-comidapon" for="Tamal">
+                    <p>Tamal</p>
+                    <img src="./comidas/tamal.png" alt="tamal" class="tarjeta-de-comidapon" style="background: transparent;"/>
+                </label>
+
+                <input type="radio" name="comida" id="Chococream" />
+                 <label class="tarjeta-de-comidapon" for="Chococream">
+                    <p>Chococream</p>
+                    <img src="./comidas/choco.png" alt="chococream" class="tarjeta-de-comidapon" style="background: transparent;"/>
+                </label>
+                
+            </div>
+
+            <button class="seleccionar" id="boton-comida">seleccionar</button>
+        </section>
+
+        <section id="seleccionar-ataque">
+            <h1 class="titulo">COMIDAPON</h1>
+
+            <h2 class="subtitulo">Elige tu ataque:</h2>
+
+             <div>
+                <button id="boton-fuego" class="boton-ataque">fuego 🔥</button>
+                <button id="boton-agua" class="boton-ataque">agua💧</button>
+                <button id="boton-tierra" class="boton-ataque">tierra🌱</button>
+            </div>
+
+                <div id="mensajes">
+                    <p id="resultado">¡Mucha suerte :D!</p>
+
+                    <section id="reiniciar">
+                        <button id="boton-reiniciar">Reiniciar</button>
+                    </section>
+                </div> 
+
+               
+
+            <div>
+            <div id="ataques-del-jugador"></div>
+            <div id="ataques-del-enemigo"></div>
+            <h1 style="position: absolute; top: 100px; left: 100px;">Tu: <samp id="comida-jugador"></samp> <span id="vidas-jugador">❤️❤️❤️</span> </h1>
+            <h1 style="position: absolute; top: 100px; right: 100px;">PC: <span id="comida-enemigo"></span> <span id="vidas-enemigo">❤️❤️❤️</span> </h1>
+
+            </div>
+
+        </section>
+    </body>
+</html>

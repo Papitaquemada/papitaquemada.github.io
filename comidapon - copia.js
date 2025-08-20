@@ -1,71 +1,35 @@
+let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+let sectionReiniciar = document.getElementById('reiniciar')
+let botonComidaJugador = document.getElementById('boton-comida')
+let botonFuego = document.getElementById('boton-fuego')
+let botonAgua = document.getElementById('boton-agua')
+let botonTierra = document.getElementById('boton-tierra')
+let botonReiniciar = document.getElementById('boton-reiniciar')
+
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
-function mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues) {
-    const totalVidas = 3
-    let corazones = ''
-
-    for (let i = 0; i < totalVidas; i++) {
-        if (i < vidasDespues) {
-            corazones += '❤️'
-        } else if (i === vidasDespues && vidasDespues < vidasAntes) {
-            corazones += '💥' // explosión solo en el que perdió
-        } else {
-            corazones += '💔'
-        }
-    }
-
-    return corazones
-}
-
-function mostrarVidasConAnimacion(vidasAntes, vidasDespues, spanElemento) {
-    // Mostrar explosión primero
-    spanElemento.innerHTML = mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues)
-
-    // Después de 0.5s, mostrar los corazones actualizados
-    setTimeout(() => {
-        spanElemento.innerHTML = generarCorazones(vidasDespues)
-    }, 500)
-}
-
-function reproducirExplosion() {
-    const explosion = new Audio('./comidas/explosion.mp3')
-    explosion.volume = 0.1 // ajustá el volumen si querés
-    explosion.play()
-}
-
-function mostrarVidasConAnimacion(vidasAntes, vidasDespues, spanElemento) {
-    spanElemento.innerHTML = mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues)
-
-    // 🔊 ¡BOOM!
-    reproducirExplosion()
-
-    setTimeout(() => {
-        spanElemento.innerHTML = generarCorazones(vidasDespues)
-    }, 500)
-}
-
 function iniciarjuego(){
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    
     sectionSeleccionarAtaque.style.display = 'none'
 
-    let sectionReiniciar = document.getElementById('reiniciar')
+    
     sectionReiniciar.style.display = 'none'
     
     
-    let botonComidaJugador = document.getElementById('boton-comida')
+    
     botonComidaJugador.addEventListener('click', seleccionarComidaJugador)
 
-    let botonFuego = document.getElementById('boton-fuego')
+    
     botonFuego.addEventListener('click', ataqueFuego)
-    let botonAgua = document.getElementById('boton-agua')
+    
     botonAgua.addEventListener('click', ataqueAgua)
-    let botonTierra = document.getElementById('boton-tierra')
+    
     botonTierra.addEventListener('click', ataqueTierra)
 
-    let botonReiniciar = document.getElementById('boton-reiniciar')
+    
     botonReiniciar.addEventListener('click', reiniciarJuego)
 
     mostrarVidasConEmojis(3, 3)
@@ -246,6 +210,48 @@ function generarCorazones(vidasRestantes) {
     return corazones
 }
 
+function mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues) {
+    const totalVidas = 3
+    let corazones = ''
 
+    for (let i = 0; i < totalVidas; i++) {
+        if (i < vidasDespues) {
+            corazones += '❤️'
+        } else if (i === vidasDespues && vidasDespues < vidasAntes) {
+            corazones += '💥' // explosión solo en el que perdió
+        } else {
+            corazones += '💔'
+        }
+    }
+
+    return corazones
+}
+
+function mostrarVidasConAnimacion(vidasAntes, vidasDespues, spanElemento) {
+    // Mostrar explosión primero
+    spanElemento.innerHTML = mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues)
+
+    // Después de 0.5s, mostrar los corazones actualizados
+    setTimeout(() => {
+        spanElemento.innerHTML = generarCorazones(vidasDespues)
+    }, 500)
+}
+
+function reproducirExplosion() {
+    const explosion = new Audio('./comidas/explosion.mp3')
+    explosion.volume = 0.1 // ajustá el volumen si querés
+    explosion.play()
+}
+
+function mostrarVidasConAnimacion(vidasAntes, vidasDespues, spanElemento) {
+    spanElemento.innerHTML = mostrarExplosionAntesDeRomper(vidasAntes, vidasDespues)
+
+    // 🔊 ¡BOOM!
+    reproducirExplosion()
+
+    setTimeout(() => {
+        spanElemento.innerHTML = generarCorazones(vidasDespues)
+    }, 500)
+}
 
     window.addEventListener('load', iniciarjuego)
