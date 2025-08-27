@@ -1,15 +1,54 @@
-let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-let sectionReiniciar = document.getElementById('reiniciar')
-let botonComidaJugador = document.getElementById('boton-comida')
-let botonFuego = document.getElementById('boton-fuego')
-let botonAgua = document.getElementById('boton-agua')
-let botonTierra = document.getElementById('boton-tierra')
-let botonReiniciar = document.getElementById('boton-reiniciar')
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const sectionReiniciar = document.getElementById('reiniciar')
+const botonComidaJugador = document.getElementById('boton-comida')
+const botonFuego = document.getElementById('boton-fuego')
+const botonAgua = document.getElementById('boton-agua')
+const botonTierra = document.getElementById('boton-tierra')
+const botonReiniciar = document.getElementById('boton-reiniciar')
 
+const sectionSeleccionarMascota = document.getElementById('seleccionar-comida')
+const inputpapita = document.getElementById('papita')
+const inputNuggets = document.getElementById('Nuggets')
+const inputTamal = document.getElementById('Tamal')
+const inputChococream = document.getElementById('Chococream')
+const spanComidajugador = document.getElementById('comida-jugador')
+
+const spanComidaEnemigo = document.getElementById('comida-enemigo')
+
+const spanVidasJugador = document.getElementById('vidas-jugador')
+const spanVidasEnemigo = document.getElementById('vidas-enemigo')
+
+const sectionMensajes = document.getElementById('resultado')
+const ataquesDelJugador = document.getElementById('ataques-del-jugador')
+const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+
+
+
+let comidas = []
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
+
+class Comidapon {
+    constructor(nombre, foto, vida) {
+    this.nombre = nombre
+    this.foto = foto
+    this.vida = vida
+    }
+}
+
+let papita = new Comidapon('papita', './comidas/papita.png', 5)
+
+let Nuggets = new Comidapon('Nuggets', './comidas/nuggets.png', 5)
+
+let Tamal = new Comidapon('Tamal', './comidas/tamal.png', 5)
+
+let Chococream = new Comidapon('Chococream', './comidas/choco.png', 5)
+
+Comidas.push(papita, Nuggets, Tamal, Chococream)
+
+console.log(Comidas)
 
 function iniciarjuego(){
     
@@ -37,17 +76,13 @@ function iniciarjuego(){
 }
 
 function seleccionarComidaJugador() {
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-comida')
+    
     sectionSeleccionarMascota.style.display = 'none'
     
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    
     sectionSeleccionarAtaque.style.display = 'flex'
    
-    let inputpapita = document.getElementById('papita')
-    let inputNuggets = document.getElementById('Nuggets')
-    let inputTamal = document.getElementById('Tamal')
-    let inputChococream = document.getElementById('Chococream')
-    let spanComidajugador = document.getElementById('comida-jugador')
+   
 
     if (inputpapita.checked) {
         spanComidajugador.innerHTML = 'papita'
@@ -67,7 +102,7 @@ function seleccionarComidaJugador() {
 
 function seleccionarComidaEnemigo() {
     let comidaAleatoria = aleatorio(1,4)
-    let spanComidaEnemigo = document.getElementById('comida-enemigo')
+    
 
     if (comidaAleatoria == 1) {
         spanComidaEnemigo.innerHTML = 'papita'
@@ -108,8 +143,7 @@ function ataqueAleatorioEnemigo() {
 }
 
 function combate() {
-    let spanVidasJugador = document.getElementById('vidas-jugador')
-    let spanVidasEnemigo = document.getElementById('vidas-enemigo')
+    
 
     if(ataqueEnemigo == ataqueJugador) {
         crearMensaje("EMPATE🤝")
@@ -148,9 +182,7 @@ function revisionDeVidas() {
 }
 
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('resultado')
-    let ataquesDelJugador = document.getElementById('ataques-del-jugador')
-    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+   
     
     let nuevoAtaqueDelJugador = document.createElement('p')
     let nuevoAtaqueDelEnemigo = document.createElement('p')
@@ -164,18 +196,18 @@ function crearMensaje(resultado) {
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('resultado')
+    
     
     sectionMensajes.innerHTML = resultadoFinal
     
-    let botonFuego = document.getElementById('boton-fuego')
+    
     botonFuego.disabled = true
-    let botonAgua = document.getElementById('boton-agua')
+    
     botonAgua.disabled = true
-    let botonTierra = document.getElementById('boton-tierra')
+    
     botonTierra.disabled = true
 
-    let sectionReiniciar = document.getElementById('reiniciar')
+    
     sectionReiniciar.style.display = 'block'
 
 }
