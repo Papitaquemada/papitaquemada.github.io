@@ -35,6 +35,7 @@ class Comidapon {
     this.nombre = nombre
     this.foto = foto
     this.vida = vida
+    this.ataques = []
     }
 }
 
@@ -46,9 +47,39 @@ let Tamal = new Comidapon('Tamal', './comidas/tamal.png', 5)
 
 let Chococream = new Comidapon('Chococream', './comidas/choco.png', 5)
 
-Comidas.push(papita, Nuggets, Tamal, Chococream)
+papita.ataques.push(
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🌱', id: 'boton-tierra' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🔥', id: 'boton-fuego' },
+)
 
-console.log(Comidas)
+Nuggets.ataques.push(
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🌱', id: 'boton-tierra' },
+)
+
+Tamal.ataques.push(
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🌱', id: 'boton-tierra' },
+)
+
+Chococream.ataques.push(
+    {nombre: '💧', id: 'boton-agua' },
+    {nombre: '🌱', id: 'boton-tierra' },
+    {nombre: '🌱', id: 'boton-tierra' },
+    {nombre: '🔥', id: 'boton-fuego' },
+    {nombre: '🌱', id: 'boton-tierra' },
+)
+
+
 
 function iniciarjuego(){
     
