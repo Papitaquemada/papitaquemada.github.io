@@ -21,12 +21,14 @@ const spanVidasEnemigo = document.getElementById('vidas-enemigo')
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
-
+let contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 
 let comidas = []
 let ataqueJugador
 let ataqueEnemigo
+let opcionDeComidas
+
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -85,6 +87,15 @@ function iniciarjuego(){
     
     sectionSeleccionarAtaque.style.display = 'none'
 
+    comidas.forEach((comida) => {
+        opcionDeComidas = `
+         <input type="radio" name="comida" id=${comida.nombre} />
+        <label class="tarjeta-de-comidapon" for=${comida.nombre}>
+            <p>${comida.nombre}</p>
+            <img src="./comidas/papita.png" alt=${comida.foto} class="tarjeta-de-comidapon" style="background: transparent;"/>
+        </label>
+        `
+    })
     
     sectionReiniciar.style.display = 'none'
     
