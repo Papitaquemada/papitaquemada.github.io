@@ -272,3 +272,24 @@ body.fade-out {
     from { opacity: 1; }
     to { opacity: 0; }
 }
+
+@media (max-width: 480px) {
+    .actividades-item {
+        flex-direction: column;
+    }
+
+    .actividades-img {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .button-container {
+        flex-direction: row;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .details-btn {
+        width: 100%;
+    }
+}
