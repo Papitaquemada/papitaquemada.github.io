@@ -21,4 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('fade-out');
         }
     });
+
+    // Botón de play para el video
+    const playBtn = document.getElementById('play-btn');
+    const video = document.getElementById('feria-video');
+    if (playBtn && video) {
+        playBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playBtn.textContent = '⏸️';
+            } else {
+                video.pause();
+                playBtn.textContent = '▶️';
+            }
+        });
+    }
 });
